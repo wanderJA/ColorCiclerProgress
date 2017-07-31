@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorfulProgress">
+        <attr name="progress_status" format="string" />
+        <attr name="progress_stroke_width" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+
+    </declare-styleable>
+
+
+</resources>

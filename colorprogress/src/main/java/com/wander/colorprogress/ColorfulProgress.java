@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -22,7 +23,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ProgressBar;
-
 
 
 /**
@@ -70,6 +70,14 @@ public class ColorfulProgress extends ProgressBar {
 
     public ColorfulProgress(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        if (attrs != null) {
+            TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.ColorfulProgress);
+            mStrokeWidth = array.getDimensionPixelSize(R.styleable.ColorfulProgress_progress_stroke_width, mStrokeWidth);
+            tip = array.getString(R.styleable.ColorfulProgress_progress_status);
+            tipTextSize = (int) array.getDimension(R.styleable.ColorfulProgress_progress_text_size, tipTextSize);
+            array.recycle();
+        }
+
         init();
     }
 
@@ -172,7 +180,7 @@ public class ColorfulProgress extends ProgressBar {
     }
 
     public void setColorProgress(int progress) {
-        if (getProgress() != progress && !isRunning()) {
+        if (getProgress() != progress /*&& !isRunning()*/) {
             runInt(progress);
             mPlayingState = RUNNING;
         }
@@ -188,8 +196,7 @@ public class ColorfulProgress extends ProgressBar {
      * @param progress
      */
     private void runInt(int progress) {
-        ValueAnimator valueAnimator = ValueAnimator.ofInt((int) getProgress(),
-                (int) progress);
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(getProgress(), progress);
         valueAnimator.setDuration(duration);
 
         valueAnimator
