@@ -31,11 +31,16 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
+        android:maxHeight="7dp"
         android:max="100"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorProgress"
         tools:layout_constraintTop_creator="1"
+        app:paddingStart="0dp"
+        app:paddingEnd="0dp"
+        android:progressDrawable="@drawable/seekbar_process_drawable"
+        android:thumb="@drawable/seekbar_thumb_drawable"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp" />
 
