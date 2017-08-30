@@ -15,7 +15,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         app:progress_text_size="16px"
-        app:progress_stroke_width="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,8 +38,6 @@
         tools:layout_constraintTop_creator="1"
         app:paddingStart="0dp"
         app:paddingEnd="0dp"
-        android:progressDrawable="@drawable/seekbar_process_drawable"
-        android:thumb="@drawable/seekbar_thumb_drawable"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp" />
 

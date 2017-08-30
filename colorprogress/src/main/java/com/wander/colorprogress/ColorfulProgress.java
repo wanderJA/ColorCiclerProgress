@@ -165,7 +165,7 @@ public class ColorfulProgress extends ProgressBar {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float sweep = getProgress() * 1.0f / getMax() * 360;
+        float sweep = getProgress() * 1.0f / getMax() * 360+0.01f;
         float v = offSet + sweep;
         //剩余进度
         canvas.drawArc(rectF, v, 360.0f - v, false, circlePaint);
