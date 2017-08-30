@@ -168,7 +168,7 @@ public class ColorfulProgress extends ProgressBar {
         float sweep = getProgress() * 1.0f / getMax() * 360+0.01f;
         float v = offSet + sweep;
         //剩余进度
-        canvas.drawArc(rectF, v, 360.0f - v, false, circlePaint);
+        canvas.drawArc(rectF, v, 360.0f - sweep, false, circlePaint);
         //当前进度
         canvas.drawArc(rectF, offSet, sweep, false, mPaint);
         //内环的阴影
