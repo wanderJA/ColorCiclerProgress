@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 14
@@ -19,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -26,6 +31,13 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:27.0.2'
     testCompile 'junit:junit:4.12'
+}
+
+publish {
+    userOrg = 'wanderja'      // bintray注册的用户名
+    groupId = 'com.wander'
+    artifactId = 'colorprogress'// bintray创建的package
+    publishVersion = '0.9.1'
 }

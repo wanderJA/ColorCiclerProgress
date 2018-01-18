@@ -246,21 +246,11 @@ public class ColorfulProgress extends ProgressBar {
         mTextPaint.setTextSize(sp2px(tipTextSize));
     }
 
-    /**
-     * dp 2 px
-     *
-     * @param dpVal
-     */
     protected int dp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, getResources().getDisplayMetrics());
     }
 
-    /**
-     * sp 2 px
-     *
-     * @param dpVal
-     */
     protected int sp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 dpVal, getResources().getDisplayMetrics());
@@ -298,7 +288,6 @@ public class ColorfulProgress extends ProgressBar {
      *            ：缩放后宽度
      * @param newHeight
      *            ：缩放后高度
-     * @return
      */
     private static Bitmap zoomImage(Bitmap oldBitmap, double newWidth,
                                     double newHeight) {
