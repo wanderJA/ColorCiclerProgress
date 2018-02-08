@@ -22,14 +22,15 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.ProgressBar;
+import android.view.View;
 
 
 /**
- * Created by wander on 2017/7/27.
+ * @author wander
+ * @date 2017/7/27
  */
 
-public class ColorfulProgress extends ProgressBar {
+public class ColorfulProgress extends View {
 
     private Paint mPaint;
     private Bitmap bitmap;
@@ -58,6 +59,7 @@ public class ColorfulProgress extends ProgressBar {
     private static final int RUNNING = 1;
 
     private int mPlayingState = STOPPED;
+    private float mCurrentProgress;
 
 
     public ColorfulProgress(Context context) {
@@ -165,7 +167,12 @@ public class ColorfulProgress extends ProgressBar {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float sweep = getProgress() * 1.0f / getMax() * 360+0.01f;
+        float sweep = mCurrentProgress * 360 + 0.01f;
+        if (sweep < 5 || sweep > 355) {
+            mPaint.setStrokeCap(Paint.Cap.BUTT);
+        } else {
+            mPaint.setStrokeCap(Paint.Cap.ROUND);
+        }
         float v = offSet + sweep;
         //剩余进度
         canvas.drawArc(rectF, v, 360.0f - sweep, false, circlePaint);
@@ -179,9 +186,9 @@ public class ColorfulProgress extends ProgressBar {
 
     }
 
-    public void setColorProgress(int progress) {
-        if (getProgress() != progress /*&& !isRunning()*/) {
-            runInt(progress);
+    public void setColorProgress(float progress) {
+        if (mCurrentProgress != progress /*&& !isRunning()*/) {
+            runFloat(progress);
             mPlayingState = RUNNING;
         }
     }
@@ -195,8 +202,8 @@ public class ColorfulProgress extends ProgressBar {
      *
      * @param progress
      */
-    private void runInt(int progress) {
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(getProgress(), progress);
+    private void runFloat(float progress) {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(mCurrentProgress, progress);
         valueAnimator.setDuration(duration);
 
         valueAnimator
@@ -205,7 +212,8 @@ public class ColorfulProgress extends ProgressBar {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         //设置瞬时的数据值到界面上
-                        setProgress((Integer) valueAnimator.getAnimatedValue());
+                        mCurrentProgress = (float) valueAnimator.getAnimatedValue();
+                        invalidate();
                         if (valueAnimator.getAnimatedFraction() >= 1) {
                             //设置状态为停止
                             mPlayingState = STOPPED;

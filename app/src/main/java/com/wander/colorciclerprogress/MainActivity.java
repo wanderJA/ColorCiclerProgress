@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        final ColorfulProgress colorfulProgress = (ColorfulProgress) findViewById(R.id.colorProgress);
+        final ColorfulProgress colorfulProgress = findViewById(R.id.colorProgress);
+        colorfulProgress.setColorProgress(5.0f / 360);
 
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-                colorfulProgress.setColorProgress(i);
+                colorfulProgress.setColorProgress(i * 1.0f / seekBar.getMax());
 
             }
 

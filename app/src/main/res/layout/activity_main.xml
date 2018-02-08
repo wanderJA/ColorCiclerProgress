@@ -36,8 +36,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colorProgress"
         tools:layout_constraintTop_creator="1"
-        app:paddingStart="0dp"
-        app:paddingEnd="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp" />
 
