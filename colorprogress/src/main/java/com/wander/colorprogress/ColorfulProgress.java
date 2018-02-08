@@ -26,8 +26,8 @@ import android.view.View;
 
 
 /**
- * @author wander
- * @date 2017/7/27
+ * author wander
+ * date 2017/7/27
  */
 
 public class ColorfulProgress extends View {
@@ -168,16 +168,18 @@ public class ColorfulProgress extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float sweep = mCurrentProgress * 360 + 0.01f;
+        float tempOffSet = offSet;
         if (sweep < 5 || sweep > 355) {
             mPaint.setStrokeCap(Paint.Cap.BUTT);
+            tempOffSet = -90;
         } else {
             mPaint.setStrokeCap(Paint.Cap.ROUND);
         }
-        float v = offSet + sweep;
+        float v = tempOffSet + sweep;
         //剩余进度
         canvas.drawArc(rectF, v, 360.0f - sweep, false, circlePaint);
         //当前进度
-        canvas.drawArc(rectF, offSet, sweep, false, mPaint);
+        canvas.drawArc(rectF, tempOffSet, sweep, false, mPaint);
         //内环的阴影
         canvas.drawCircle(rectF.centerX(), rectF.centerY() + 1, innerRadius - (mStrokeWidth >> 2), innerShadowPaint);
         //内环
